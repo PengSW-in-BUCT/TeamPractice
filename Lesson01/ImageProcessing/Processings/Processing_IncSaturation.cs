@@ -7,12 +7,11 @@ namespace ImageProcessing.Processings
     {
         public Processing_IncSaturation()
         {
-            _Control = new Ui_Slider(this);
             Level = 50;
+            Control = new Ui_Slider(this);
         }
         public override string Name { get { return "Saturation"; } }
-        public override UserControl Control { get { return _Control; } }
-        private Ui_Slider _Control;
+        public override UserControl Control { get; }
         public double Level { get; set; }
         
         protected override byte[] ProcessImage(byte[] aSourceRawData, ref int aPixelWidth, ref int aPixelHeight, int aBytesPerPixel, ref int aStride)

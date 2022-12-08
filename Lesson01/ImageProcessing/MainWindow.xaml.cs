@@ -24,8 +24,11 @@ namespace ImageProcessing
         {
             try
             {
-                OpenFileDialog aDlg = new OpenFileDialog();
-                aDlg.Filter = "Jpg文件 (*.jpg)|*.jpg|Bmp文件 (*.bmp)|*.bmp|所有文件 (*.*)|*.*";
+                OpenFileDialog aDlg = new OpenFileDialog()
+                {
+                    Filter = "Jpg文件 (*.jpg)|*.jpg|Bmp文件 (*.bmp)|*.bmp|所有文件 (*.*)|*.*",
+                    InitialDirectory = System.IO.Directory.GetCurrentDirectory(),
+            };
                 if (aDlg.ShowDialog() != true) return;
                 _Model.LoadSource(aDlg.FileName);
             }
@@ -44,8 +47,11 @@ namespace ImageProcessing
         {
             try
             {
-                SaveFileDialog aDlg = new SaveFileDialog();
-                aDlg.Filter = "Jpg文件 (*.jpg)|*.jpg|Bmp文件 (*.bmp)|*.bmp|所有文件 (*.*)|*.*";
+                SaveFileDialog aDlg = new SaveFileDialog()
+                {
+                    Filter = "Jpg文件 (*.jpg)|*.jpg|Bmp文件 (*.bmp)|*.bmp|所有文件 (*.*)|*.*",
+                    InitialDirectory = System.IO.Directory.GetCurrentDirectory(),
+                };
                 if (aDlg.ShowDialog() != true) return;
                 _Model.SaveResult(aDlg.FileName);
             }
