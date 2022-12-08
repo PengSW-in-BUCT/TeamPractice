@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProcessing", "ImagePro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatePicture", "CreatePicture\CreatePicture.csproj", "{0376D418-E91E-4CC5-BBEF-F8B8B5C0DA58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextDialogHelper", "TextDialogHelper\TextDialogHelper.csproj", "{6A823D54-E45A-482E-9EB2-6000B1C1F5F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexLesson02", "RegexLesson02\RegexLesson02.csproj", "{16BC760C-7BC0-4A9C-95D0-62D8DEA72551}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{0376D418-E91E-4CC5-BBEF-F8B8B5C0DA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0376D418-E91E-4CC5-BBEF-F8B8B5C0DA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0376D418-E91E-4CC5-BBEF-F8B8B5C0DA58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A823D54-E45A-482E-9EB2-6000B1C1F5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A823D54-E45A-482E-9EB2-6000B1C1F5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A823D54-E45A-482E-9EB2-6000B1C1F5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A823D54-E45A-482E-9EB2-6000B1C1F5F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BC760C-7BC0-4A9C-95D0-62D8DEA72551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BC760C-7BC0-4A9C-95D0-62D8DEA72551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BC760C-7BC0-4A9C-95D0-62D8DEA72551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BC760C-7BC0-4A9C-95D0-62D8DEA72551}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
