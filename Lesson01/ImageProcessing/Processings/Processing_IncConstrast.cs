@@ -6,17 +6,15 @@ using System.Windows.Controls;
 
 namespace ImageProcessing.Processings
 {
-    public class Processing_IncConstrast:Processing
+    public class Processing_IncConstrast : Processing
     {
         public Processing_IncConstrast()
         {
-            _Control = new Ui_Slider(this);
-            Level = 50;
+            Control = new Ui_Slider(this);
         }
         public override string Name { get { return "Constrast"; } }
-        public override UserControl Control { get { return _Control; } }
-        private Ui_Slider _Control;
-        public double Level { get; set; }
+        public override UserControl Control { get; }
+        public double Level { get; set; } = 50;
 
         protected override byte[] ProcessImage(byte[] aSourceRawData, ref int aPixelWidth, ref int aPixelHeight, int aBytesPerPixel, ref int aStride)
         {

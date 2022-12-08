@@ -17,7 +17,7 @@ namespace ImageProcessing
             this.DataContext = aProcessing;
         }
         Processing _Processing;
-        private void OnApply_Click(object sender, RoutedEventArgs e)
+        private void OnValueChanged(object sender, RoutedEventArgs e)
         {
             try
             {
