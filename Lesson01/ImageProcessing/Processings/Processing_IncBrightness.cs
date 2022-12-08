@@ -9,7 +9,7 @@ namespace ImageProcessing.Processings
         {
             Control = new Ui_Slider(this);
         }
-        public override string Name { get { return "Brightness"; } }
+        public override string Name => "Brightness";
         public override UserControl Control { get; }
         public double Level { get; set; } = 50.0;
         

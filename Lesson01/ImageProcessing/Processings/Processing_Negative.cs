@@ -4,13 +4,7 @@ namespace ImageProcessing.Processings
 {
     public class Processing_Negative : Processing
     {
-        public override string Name
-        {
-            get
-            {
-                return "Negative";
-            }
-        }
+        public override string Name => "Negative";
 
         protected override byte[] ProcessImage(byte[] aSourceRawData, ref int aPixelWidth, ref int aPixelHeight, int aBytesPerPixel, ref int aStride)
         {

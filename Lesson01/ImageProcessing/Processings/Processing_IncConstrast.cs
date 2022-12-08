@@ -12,7 +12,7 @@ namespace ImageProcessing.Processings
         {
             Control = new Ui_Slider(this);
         }
-        public override string Name { get { return "Constrast"; } }
+        public override string Name => "Constrast";
         public override UserControl Control { get; }
         public double Level { get; set; } = 50;
 

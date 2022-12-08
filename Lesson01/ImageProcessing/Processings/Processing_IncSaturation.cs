@@ -10,7 +10,7 @@ namespace ImageProcessing.Processings
             Level = 50;
             Control = new Ui_Slider(this);
         }
-        public override string Name { get { return "Saturation"; } }
+        public override string Name => "Saturation";
         public override UserControl Control { get; }
         public double Level { get; set; }
         

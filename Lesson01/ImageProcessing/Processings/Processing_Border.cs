@@ -4,13 +4,7 @@ namespace ImageProcessing.Processings
 {
     public class Processing_Border : Processing
     {
-        public override string Name
-        {
-            get
-            {
-                return "加5像素黑框";
-            }
-        }
+        public override string Name => "加5像素黑框";
 
         protected override byte[] ProcessImage(byte[] aSourceRawData, ref int aPixelWidth, ref int aPixelHeight, int aBytesPerPixel, ref int aStride)
         {
