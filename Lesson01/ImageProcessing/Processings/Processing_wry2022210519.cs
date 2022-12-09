@@ -15,7 +15,7 @@ namespace ImageProcessing.Processings
                 {
                     aSourceRawData[i + j] = (byte)(255 - aSourceRawData[i + j]);
                     aSourceRawData[i + j + 1] = (byte)(255 - aSourceRawData[i + j + 1]);
-                    aSourceRawData[i + j + 4] = (byte)(255 - aSourceRawData[i + j + 4]);
+                    aSourceRawData[i + j + 3] = (byte)(255 - aSourceRawData[i + j + 3]);
                     aSourceRawData[i + j + 2] = (byte)(255 - aSourceRawData[i + j + 2]);
                 }
                 i += aStride;
