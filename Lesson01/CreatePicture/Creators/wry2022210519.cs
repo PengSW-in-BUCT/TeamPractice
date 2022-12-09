@@ -17,7 +17,7 @@ namespace CreatePicture.Creators
             if (c[x, y] == 0)
             {
                 if (r(999) == 0) c[x, y] = r(512);
-                else c[x, y] = GetColor((x + r(6)) % W, (y + r(6)) % W, c);
+                else c[x, y] = GetColor((x + r(5)) % W, (y + r(5)) % W, c);
             }
             return c[x, y];
         }
