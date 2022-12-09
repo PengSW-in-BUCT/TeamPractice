@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="CreatePictureModel.cs" />
     <Compile Include="Creators\L0000000000.cs" />
+    <Compile Include="Creators\L2022210509-LiuYangtao.cs" />
     <Compile Include="Creators\RandPicture.cs" />
     <Compile Include="Creators\Sample01.cs" />
     <Compile Include="Creators\Sample02.cs" />
