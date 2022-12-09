@@ -1,19 +1,36 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace RegexLesson02
 {
+    [DataContract]
+    class RecentItem
+    {
+        [DataMember] public string FileName { get; set; }
+        [DataMember] public string EncodingName { get; set; }
+    }
+    [DataContract]
+    class ConfigData
+    {
+        [DataMember] public ObservableCollection<RecentItem> Items { get; set;} = new ObservableCollection<RecentItem>();
+    }
+
     class MainModel : INotifyPropertyChanged
     {
         public Encoding[] Encodings
         {
             get { return _Encodings; }
         }
-        private Encoding[] _Encodings = new Encoding[] 
+        private Encoding[] _Encodings = new Encoding[]
         {
             Encoding.Default,
             Encoding.ASCII,
@@ -29,8 +46,8 @@ namespace RegexLesson02
             get => _CurrentEncoding;
             set
             {
-                if (_CurrentEncoding == value) return; 
-                _CurrentEncoding = value; 
+                if (_CurrentEncoding == value) return;
+                _CurrentEncoding = value;
                 OnPropertyChanged(nameof(CurrentEncoding));
             }
         }
@@ -40,6 +57,15 @@ namespace RegexLesson02
         {
             string[] aLines = File.ReadAllLines(aFileName, aEncoding);
             SourceTexts = aLines;
+            if (Recents.Items.FirstOrDefault(r => r.FileName == aFileName) == null)
+                Recents.Items.Add(new RecentItem { FileName = aFileName, EncodingName = aEncoding.EncodingName });
+        }
+
+        public void Load(string aFileName, string aEncodingName)
+        {
+            Encoding aEncoding = (from r in Encodings where r.EncodingName == aEncodingName select r).FirstOrDefault(); 
+            if (aEncoding == null) aEncoding = Encoding.Default;
+            Load(aFileName, aEncoding);
         }
 
         public string[] SourceTexts
@@ -57,6 +83,7 @@ namespace RegexLesson02
 
         public void DoFilter()
         {
+            if (SourceTexts == null) return;
             if (string.IsNullOrEmpty(Pattern))
             {
                 FilteredTexts = new List<string>(SourceTexts);
@@ -94,6 +121,7 @@ namespace RegexLesson02
                 if (_Pattern == value) return;
                 _Pattern = value;
                 OnPropertyChanged(nameof(Pattern));
+                DoFilter();
             }
         }
         private string _Pattern;
@@ -102,29 +130,51 @@ namespace RegexLesson02
         private const string ConfigFileName = "Regex.config";
         public void LoadConfig()
         {
-            try{
-                XDocument aXDocument = XDocument.Load(ConfigFileName);
-                this.ReadFromXml(aXDocument.Root.Element("Regex"));
-            }catch (System.Exception){}
+            try
+            {
+                string aConfigJson = File.ReadAllText(ConfigFileName);
+                DataContractJsonSerializer aSerializer = new DataContractJsonSerializer(typeof(ConfigData));
+                using (MemoryStream aStream = new MemoryStream(Encoding.UTF8.GetBytes(aConfigJson)))
+                {
+                    Recents = aSerializer.ReadObject(aStream) as ConfigData;
+                }
+            }
+            catch (System.Exception) { }
         }
         public void SaveConfig()
         {
-            try{
-                XDocument aXDocument = new XDocument(new XElement("Config", this.CreateXElement("Regex")));
-                aXDocument.Save(ConfigFileName);
-            }catch (System.Exception){}
+            try
+            {
+                byte[] aBytes;
+                DataContractJsonSerializer aSerializer = new DataContractJsonSerializer(typeof(ConfigData));
+                using (MemoryStream aStream = new MemoryStream())
+                {
+                    aSerializer.WriteObject(aStream, Recents);
+                    aStream.Seek(0, SeekOrigin.Begin);
+                    aBytes = aStream.ToArray();
+                }
+                string aConfigJson = Encoding.UTF8.GetString(aBytes);
+                File.WriteAllText(ConfigFileName, aConfigJson);
+            }
+            catch (System.Exception ex) 
+            {
+                System.Diagnostics.Trace.WriteLine(ex.Message);
+            }
         }
-        #region 序列化
-        public void ReadFromXml(XElement aXElement)
-        {
-            if (aXElement == null) return;
-            Pattern = aXElement.Element(nameof(Pattern))?.Value;
-        }
-        public XElement CreateXElement(string aXmlNodeName)
-        {
-            return new XElement(aXmlNodeName, new XElement(nameof(Pattern), Pattern));
-        }
-        #endregion
+        //#region 序列化
+        //public void ReadFromXml(XElement aXElement)
+        //{
+        //    if (aXElement == null) return;
+        //    Pattern = aXElement.Element(nameof(Pattern))?.Value;
+        //}
+        //public XElement CreateXElement(string aXmlNodeName)
+        //{
+        //    return new XElement(aXmlNodeName, new XElement(nameof(Pattern), Pattern));
+        //}
+        //#endregion
+
+        public ConfigData Recents { get => _Recents; private set { if (_Recents == value) return; _Recents = value; OnPropertyChanged(nameof(Recents)); } }
+        private ConfigData _Recents = new ConfigData();
 
         private void OnPropertyChanged(string aPropertyName)
         {
