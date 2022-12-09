@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Windows;
 using TextDialogHelper;
 
@@ -63,6 +64,24 @@ namespace RegexLesson02
             catch (Exception)
             {
             }
+        }
+
+        private void OnLoadFile_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                RecentItem aRecentItem = e.Parameter as RecentItem;
+                _Model.Load(aRecentItem.FileName, aRecentItem.EncodingName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void OnLoadFile_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = e.Parameter is RecentItem;
         }
     }
 }
