@@ -13,7 +13,7 @@ namespace RegexLesson02
         {
             get { return _Encodings; }
         }
-        private Encoding[] _Encodings = new Encoding[] 
+        private Encoding[] _Encodings = new Encoding[]
         {
             Encoding.Default,
             Encoding.ASCII,
@@ -29,8 +29,8 @@ namespace RegexLesson02
             get => _CurrentEncoding;
             set
             {
-                if (_CurrentEncoding == value) return; 
-                _CurrentEncoding = value; 
+                if (_CurrentEncoding == value) return;
+                _CurrentEncoding = value;
                 OnPropertyChanged(nameof(CurrentEncoding));
             }
         }
@@ -102,17 +102,21 @@ namespace RegexLesson02
         private const string ConfigFileName = "Regex.config";
         public void LoadConfig()
         {
-            try{
+            try
+            {
                 XDocument aXDocument = XDocument.Load(ConfigFileName);
                 this.ReadFromXml(aXDocument.Root.Element("Regex"));
-            }catch (System.Exception){}
+            }
+            catch (System.Exception) { }
         }
         public void SaveConfig()
         {
-            try{
+            try
+            {
                 XDocument aXDocument = new XDocument(new XElement("Config", this.CreateXElement("Regex")));
                 aXDocument.Save(ConfigFileName);
-            }catch (System.Exception){}
+            }
+            catch (System.Exception) { }
         }
         #region 序列化
         public void ReadFromXml(XElement aXElement)
@@ -132,4 +136,13 @@ namespace RegexLesson02
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }
+
+
+    public class Rootobject
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Url { get; set; }
+    }
+
 }
