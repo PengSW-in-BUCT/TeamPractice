@@ -79,6 +79,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Processings\Procecssing_Mirror.cs" />
+    <Compile Include="Processings\Processing_2022210513.cs" />
     <Compile Include="Ui_Slider.xaml.cs">
       <DependentUpon>Ui_Slider.xaml</DependentUpon>
     </Compile>
