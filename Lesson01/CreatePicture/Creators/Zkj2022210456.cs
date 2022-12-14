@@ -10,44 +10,17 @@ namespace CreatePicture.Creators
     {
         public override int B(int x, int y)
         {
-            double _x = 0, _y = 0;
-            int k;
-            for (k = 0; k < 128; k++)
-            {
-                double a = _x * _x - _y * _y + (x - 768.0) / 512;
-                _y = 2 * _x * _y + (y - 512.0) / 512;
-                _x = a;
-                if (_x * _x + _y * _y > 4) break;
-            }
-            return k;
+            return (int)(_cb(cos(atan2(y - H / 2, x - W / 2) / 2)) * 128);
         }
 
         public override int G(int x, int y)
         {
-            double _x = 0, _y = 0;
-            int k;
-            for (k = 0; k < 128; k++)
-            {
-                double a = _x * _x - _y * _y + (x - 768.0) / 512;
-                _y = 2 * _x * _y + (y - 512.0) / 512;
-                _x = a;
-                if (_x * _x + _y * _y > 4) break;
-            }
-            return k > 63 ? 128 : k * 4;
+            return (int)(_sq(cos(atan2(y -H / 2, x - W / 2) / 2 - 2 * acos(-1) / 3)) * 128);
         }
 
         public override int R(int x, int y)
         {
-            double _x = 0, _y = 0;
-            int k;
-            for (k = 0; k++ < 128;)
-            {
-                double a = _x * _x - _y * _y + (x - 768.0) / 512;
-                _y = 2 * _x * _y + (y - 512.0) / 512;
-                _x = a;
-                if (_x * _x + _y * _y > 4) break;
-            }
-            return k > 31 ? 128 : k * 8;
+            return (int)(_cr(cos(atan2(y -H / 2, x - W / 2) / 2)) * 128);
         }
     }
 }
