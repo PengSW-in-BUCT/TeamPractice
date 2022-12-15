@@ -129,17 +129,12 @@ namespace RegexLesson02
         {
             try
             {
-<<<<<<<<< Temporary merge branch 1
                 string aConfigJson = File.ReadAllText(ConfigFileName);
-                DataContractJsonSerializer aSerializer = new DataContractJsonSerializer(typeof(ConfigData));
+                DataContractJsonSerializer aSerializer = new DataContractJsonSerializer(typeof(RecentItem));
                 using (MemoryStream aStream = new MemoryStream(Encoding.UTF8.GetBytes(aConfigJson)))
                 {
-                    Recents = aSerializer.ReadObject(aStream) as ConfigData;
+                Recents = aSerializer.ReadObject(aStream) as RecentItemCollection;
                 }
-=========
-                XDocument aXDocument = XDocument.Load(ConfigFileName);
-                this.ReadFromXml(aXDocument.Root.Element("Regex"));
->>>>>>>>> Temporary merge branch 2
             }
             catch (System.Exception) { }
         }
@@ -147,28 +142,25 @@ namespace RegexLesson02
         {
             try
             {
-<<<<<<<<< Temporary merge branch 1
                 byte[] aBytes;
-                DataContractJsonSerializer aSerializer = new DataContractJsonSerializer(typeof(ConfigData));
-                using (MemoryStream aStream = new MemoryStream())
+                DataContractJsonSerializer aSerializer = new DataContractJsonSerializer(typeof(RecentItem));
+                using (MemoryStream aStream=new MemoryStream())
                 {
-                    aSerializer.WriteObject(aStream, Recents);
-                    aStream.Seek(0, SeekOrigin.Begin);
-                    aBytes = aStream.ToArray();
+                    aSerializer.WriteObject(aStream,Recents);
                 }
-                string aConfigJson = Encoding.UTF8.GetString(aBytes);
-                File.WriteAllText(ConfigFileName, aConfigJson);
-            }
-            catch (System.Exception ex) 
-            {
-                System.Diagnostics.Trace.WriteLine(ex.Message);
-            }
-=========
-                XDocument aXDocument = new XDocument(new XElement("Config", this.CreateXElement("Regex")));
-                aXDocument.Save(ConfigFileName);
+
             }
             catch (System.Exception) { }
->>>>>>>>> Temporary merge branch 2
+        }
+        #region 序列化
+        public void ReadFromXml(XElement aXElement)
+        {
+            if (aXElement == null) return;
+            Pattern = aXElement.Element(nameof(Pattern))?.Value;
+        }
+        public XElement CreateXElement(string aXmlNodeName)
+        {
+            return new XElement(aXmlNodeName, new XElement(nameof(Pattern), Pattern));
         }
         #endregion
 
