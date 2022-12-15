@@ -4,7 +4,7 @@ namespace ImageProcessing.Processings
 {
     public class Processing_2022210509 : Processing
     {
-        public override string Name => "2022210509-刘洋滔的处理";
+        public override string Name => "2022210509-刘洋滔的处理-更粗的边框";
 
         protected override byte[] ProcessImage(byte[] aSourceRawData, ref int aPixelWidth, ref int aPixelHeight, int aBytesPerPixel, ref int aStride)
         {
