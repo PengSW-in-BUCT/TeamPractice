@@ -67,14 +67,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CreatePictureModel.cs" />
-	  <Compile Include="Creators\L0000000000.cs" />
-	  <Compile Include="Creators\L2022210522.cs" />
+    <Compile Include="Creators\L0000000000.cs" />
     <Compile Include="Creators\RandPicture.cs" />
     <Compile Include="Creators\Sample01.cs" />
     <Compile Include="Creators\Sample02.cs" />
     <Compile Include="Creators\Sample03.cs" />
     <Compile Include="Creators\Sample04.cs" />
     <Compile Include="Creators\Sample05.cs" />
+    <Compile Include="Creators\Zkj2022210456.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

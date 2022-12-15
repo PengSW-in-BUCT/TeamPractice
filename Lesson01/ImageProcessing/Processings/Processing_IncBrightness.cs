@@ -15,7 +15,13 @@ namespace ImageProcessing.Processings
         
         protected override byte[] ProcessImage(byte[] aSourceRawData, ref int aPixelWidth, ref int aPixelHeight, int aBytesPerPixel, ref int aStride)
         {
-            for (int i = 0; i < aSourceRawData.Length; i++) { int abyte = (int)(aSourceRawData[i] * (1+(Level-50)/50)); if (abyte > 255) abyte = 255; if (abyte < 0) abyte = 0; aSourceRawData[i] = (byte)abyte; }
+            for (int i = 0; i < aSourceRawData.Length; i++) 
+            {
+                int abyte = (int)(aSourceRawData[i] * (1+(Level-50)/50));
+                if (abyte > 255) abyte = 255;
+                if (abyte < 0) abyte = 0; 
+                aSourceRawData[i] = (byte)abyte; 
+            }
             return aSourceRawData;
         }
     }
