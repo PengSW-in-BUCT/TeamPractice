@@ -67,6 +67,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CreatePictureModel.cs" />
+    <Compile Include="Creators\Ggh.cs" />
     <Compile Include="Creators\L2022210524.cs" />
     <Compile Include="Creators\lkx2022210512.cs" />
     <Compile Include="Creators\L0000000000.cs" />

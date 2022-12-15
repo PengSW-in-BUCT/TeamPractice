@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Processings\Processing_ggh.cs" />
     <Compile Include="Ui_Slider.xaml.cs">
       <DependentUpon>Ui_Slider.xaml</DependentUpon>
     </Compile>
